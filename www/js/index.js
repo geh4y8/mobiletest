@@ -25,7 +25,9 @@ function myfunc(){
     navigator.camera.getPicture(onSuccess, onFail, { quality: 50,
     destinationType: Camera.DestinationType.DATA_URL
     });
-    console.log('success')
+    // console.log('success')
+    $("#take_photo").hide()
+    $("#loading").show()
 }
 
 function onSuccess(data) {
@@ -42,8 +44,8 @@ function onSuccess(data) {
         testObject.set("picture", parseFile)
         testObject.save();
         var photo = testObject.get("picture");
-        console.log(photo.url());
-        console.log('saved')
+        // console.log(photo.url());
+        // console.log('saved')
         var xhr = new XMLHttpRequest();
         xhr.open("GET", "http://rekognition.com/func/api/?api_key=d27krKEkBgGMGkSs&api_secret=pfPCSFmsLPJtpU6t&jobs=face_age/face_beauty/face_beauty/face_sex/face_race/face_emotions&urls=" + photo.url(), false);
         xhr.send();
@@ -52,14 +54,13 @@ function onSuccess(data) {
         testObject.set("age", results.face_detection[0].age)
         testObject.set("beauty", results.face_detection[0].beauty * 100)
         testObject.save();
-        console.log(testObject.get("age"))
-        console.log(testObject.get("beauty"))
-        console.log("status  " + xhr.status)
-        console.log("response  " + xhr.responseText);
+        // console.log("status  " + xhr.status)
+        // console.log("response  " + xhr.responseText);
         cameraPic.src = photo.url();
+        $("#loading").hide()
         $("#cameraPic").show()
-        $("#take_photo").hide()
-        $(".value").html(testObject.get("beauty"))
+        $(".age-value").html(testObject.get("age"))
+        $(".value").html(parseInt(testObject.get("beauty")))
         $("#results_chart").show();
 
     })

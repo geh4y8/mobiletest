@@ -28,21 +28,28 @@
         <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
         <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
         <link rel="stylesheet" type="text/css" href="css/index.css" />
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
         <title>The Hotness</title>
     </head>
     <body>
         <div class="app">
-            <h1 id="take_photo" onclick="myfunc();">Click for Photo</h1>
+            <h1 id="take_photo" >the hotness </br><button class="btn btn-success btn-lg btn-block" onclick="myfunc();">Press for Judgement</button></h1>
+            <div id="loading" style="display:none;">
+                <h1>JUDGING...</h1>
+            </div>
             <div id="photo_show">
                 <img id="cameraPic" src="" style="width:auto;height:300px;display:none;"></img>
             </div>
-            <div id="results_chart"  class="blink" style="">
+            <div id="results_chart"  class="blink" style="display:none">
                 <div id="bar-chart">
                   <ul id="stat-ul">
                     <li class="beauty">
-                      <div class="end">BEAUTY* <span class="value"></span>%</div>
+                      <div class="end">BEAUTY*      <span class="value"></span>%</div>
                     </li>
                     <p id="disclaimer">*beauty is in the eye of the beholder. we ♡ you just the way you are.</p>
+                    <li class="age">
+                      <div class="end">Age         <span class="age-value"></span></div>
+                    </li>
                   </ul>
                 </div>
             </div>
